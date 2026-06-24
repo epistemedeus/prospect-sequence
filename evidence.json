@@ -1,0 +1,259 @@
+{
+  "skill": "epistemedeus/prospect-sequence@sha-9575d8e502fb",
+  "summary": "prospect-sequence is a runx skill that researches an account through a governed, SSRF-guarded HTTP front over an explicit host allowlist, synthesizes an angle that cites every source it read, drafts a 3-touch outreach sequence, and emits a gated send_proposal performed by the send-as catalog skill. It is published to the hosted runx registry as epistemedeus/prospect-sequence@sha-9575d8e502fb, opened as a PR against runxhq/runx (#140), local-harness-green (2/2), and dogfooded post-publish from the official source https://api.runx.ai with a sealed receipt that passes runx verify.",
+  "runx_cli_version": "runx-cli 0.6.13",
+  "publisher_owner": "epistemedeus",
+  "package_name": "prospect-sequence",
+  "version": "sha-9575d8e502fb",
+  "registry_ref": "epistemedeus/prospect-sequence@sha-9575d8e502fb",
+  "public_url": "https://runx.ai/x/epistemedeus/prospect-sequence@sha-9575d8e502fb",
+  "public_adoption_page": "https://runx.ai/x/epistemedeus/prospect-sequence",
+  "source_url": "https://github.com/epistemedeus/prospect-sequence",
+  "pr_url": "https://github.com/runxhq/runx/pull/140",
+  "pr_head_commit": "8326c62e41c3ff38479b933c22f4c6683a5e3131",
+  "x_yaml": "https://raw.githubusercontent.com/epistemedeus/runx/8326c62e41c3ff38479b933c22f4c6683a5e3131/skills/prospect-sequence/X.yaml",
+  "skill_md": "https://raw.githubusercontent.com/epistemedeus/runx/8326c62e41c3ff38479b933c22f4c6683a5e3131/skills/prospect-sequence/SKILL.md",
+  "install_command": "runx add epistemedeus/prospect-sequence@sha-9575d8e502fb",
+  "dogfood_command": "runx skill epistemedeus/prospect-sequence@sha-9575d8e502fb --registry https://api.runx.ai --input-json prospect='{\"company\":\"Example Org\",\"contact\":\"ops@example.com\"}' --input icp=\"B2B teams with a public marketing site\" --input-json source_allowlist='[\"example.com\"]' --json",
+  "publish_method": "URL-as-publish via POST https://api.runx.ai/v1/index (community lane), owner derived from the public source repo epistemedeus/prospect-sequence.",
+  "hosted_harness_status": "declared (2 cases at /v1/skills/epistemedeus/prospect-sequence/harness); local harness passed 2/2; post-publish dogfood + runx verify provide runnable proof.",
+  "receipt_ref": "runx:receipt:sha256:8f572925706d68717075df0a92cd66b963e9f356e581f13d5dee897081c92cc6",
+  "verify_verdict": "valid",
+  "typed_inputs": [
+    "prospect{company,contact}",
+    "icp",
+    "source_allowlist"
+  ],
+  "typed_outputs": [
+    "research{sources[],angle}",
+    "sequence[]",
+    "send_proposal"
+  ],
+  "harness_cases": [
+    {
+      "name": "prospect-with-public-source-yields-sourced-sequence",
+      "status": "sealed",
+      "decision": "ready",
+      "note": "reads https://example.com/ via the governed HTTP front, cites it, drafts 3 touches, proposes (not sends) the first"
+    },
+    {
+      "name": "off-allowlist-private-target-is-refused",
+      "status": "refused",
+      "decision": "refused",
+      "note": "SSRF guard refuses 169.254.169.254 (link-local / cloud-metadata); no fabricated facts; run seals a provable refusal"
+    }
+  ],
+  "dogfood": {
+    "package": "epistemedeus/prospect-sequence@sha-9575d8e502fb",
+    "input": {
+      "prospect": {
+        "company": "Example Org",
+        "contact": "ops@example.com"
+      },
+      "icp": "B2B teams with a public marketing site",
+      "source_allowlist": [
+        "example.com"
+      ]
+    },
+    "command": "runx skill epistemedeus/prospect-sequence@sha-9575d8e502fb --registry https://api.runx.ai --input-json prospect='{\"company\":\"Example Org\",\"contact\":\"ops@example.com\"}' --input icp=\"B2B teams with a public marketing site\" --input-json source_allowlist='[\"example.com\"]' --json",
+    "receipt_ref": "runx:receipt:sha256:8f572925706d68717075df0a92cd66b963e9f356e581f13d5dee897081c92cc6",
+    "verify_verdict": "valid",
+    "harness_cases": [
+      {
+        "name": "prospect-with-public-source-yields-sourced-sequence",
+        "status": "sealed",
+        "decision": "ready",
+        "note": "reads https://example.com/ via the governed HTTP front, cites it, drafts 3 touches, proposes (not sends) the first"
+      },
+      {
+        "name": "off-allowlist-private-target-is-refused",
+        "status": "refused",
+        "decision": "refused",
+        "note": "SSRF guard refuses 169.254.169.254 (link-local / cloud-metadata); no fabricated facts; run seals a provable refusal"
+      }
+    ],
+    "registry_provenance": {
+      "digest": "sha256:be3615241f71db8f91adad796817171fc60e6be25cc99076fff5987629913ca9",
+      "profile_digest": "sha256:ce5332b2422be079f9cc6210fe24456d0dd88270c842173d31b99269b61b1be0",
+      "registry_key_id": "runx-registry-ed25519-v1",
+      "registry_source": "remote https://api.runx.ai",
+      "registry_source_fingerprint": "ba1ac16b631195fd",
+      "skill_id": "epistemedeus/prospect-sequence",
+      "trust_state": "trusted",
+      "trust_tier": "community",
+      "version": "sha-9575d8e502fb"
+    }
+  },
+  "observations": [
+    {
+      "claim_type": "runx_cli_version",
+      "value": "runx-cli 0.6.13",
+      "detail": "publish, install, dogfood, and verify were all run with runx-cli 0.6.13 (meets the >=0.6.13 floor)."
+    },
+    {
+      "claim_type": "publish",
+      "publisher_owner": "epistemedeus",
+      "package_name": "prospect-sequence",
+      "version": "sha-9575d8e502fb",
+      "registry_ref": "epistemedeus/prospect-sequence@sha-9575d8e502fb",
+      "public_url": "https://runx.ai/x/epistemedeus/prospect-sequence@sha-9575d8e502fb",
+      "registry_source": "remote https://api.runx.ai",
+      "registry_key_id": "runx-registry-ed25519-v1",
+      "trust_state": "trusted",
+      "trust_tier": "community",
+      "package_digest": "sha256:be3615241f71db8f91adad796817171fc60e6be25cc99076fff5987629913ca9",
+      "profile_digest": "sha256:ce5332b2422be079f9cc6210fe24456d0dd88270c842173d31b99269b61b1be0",
+      "publish_method": "URL-as-publish (POST https://api.runx.ai/v1/index): the public source repo's SKILL.md + X.yaml were indexed into the hosted runx registry under owner epistemedeus.",
+      "detail": "Live community listing; runx registry read resolves the published metadata + digests."
+    },
+    {
+      "claim_type": "sources_read",
+      "sources": [
+        {
+          "url": "https://example.com/",
+          "host": "example.com",
+          "status": 200,
+          "content_digest": "sha256:ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+          "bytes": 559,
+          "facts": [
+            "title",
+            "h1"
+          ]
+        }
+      ],
+      "detail": "Every source was fetched through the governed HTTP front (allowlist + SSRF re-checked on each redirect) and bound to a content_digest."
+    },
+    {
+      "claim_type": "synthesized_angle",
+      "statement": "Example Org \u2014 Their public site states: \"Example Domain\" (read from https://example.com/). For an ICP of \"B2B teams with a public marketing site\", the opening angle ties our value to Example Org's own stated focus above, referencing only facts read from the cited sources. Every claim below is traceable to a source_url; nothing about Example Org is asserted that was not read.",
+      "cited_sources": [
+        "https://example.com/"
+      ],
+      "facts_used": [
+        {
+          "source_url": "https://example.com/",
+          "kind": "title",
+          "fact": "Example Domain"
+        },
+        {
+          "source_url": "https://example.com/",
+          "kind": "h1",
+          "fact": "Example Domain"
+        }
+      ],
+      "detail": "The angle cites every source it used; no account fact is asserted that was not read from a cited source."
+    },
+    {
+      "claim_type": "sequence",
+      "length": 3,
+      "steps": [
+        {
+          "step": 1,
+          "channel": "email",
+          "day": 0,
+          "subject": "Quick thought on Example Org",
+          "cites": [
+            "https://example.com/"
+          ]
+        },
+        {
+          "step": 2,
+          "channel": "email",
+          "day": 3,
+          "subject": "Re: Quick thought on Example Org",
+          "cites": [
+            "https://example.com/"
+          ]
+        },
+        {
+          "step": 3,
+          "channel": "email",
+          "day": 7,
+          "subject": "Last note for Example Org",
+          "cites": [
+            "https://example.com/"
+          ]
+        }
+      ],
+      "detail": "Multi-touch (3) outreach sequence; each touch cites the source fact it leans on."
+    },
+    {
+      "claim_type": "send_proposal",
+      "value": {
+        "decision": "proposed",
+        "performed_by": "send-as",
+        "requires_approval": true,
+        "principal": "account:prospect-outreach",
+        "channel": "email",
+        "to": "ops@example.com",
+        "first_touch_ref": 0,
+        "consent_basis": "outbound prospecting against publicly stated focus; recipient may opt out at first touch",
+        "note": "This skill only proposes. No message is sent. The send-as catalog skill performs the gated Effect after approval."
+      },
+      "detail": "Gated proposed Effect: decision=proposed, requires_approval=true, performed_by=send-as. This skill never sends; the actual send is the send-as catalog skill's gated Effect."
+    },
+    {
+      "claim_type": "policy_ssrf_guard",
+      "value": {
+        "allowlist": [
+          "example.com"
+        ],
+        "ssrf_guard": "enforced",
+        "denied": []
+      },
+      "detail": "Research uses allowlisted public hosts only; the SSRF guard refuses loopback/private/link-local/ULA/CGNAT/cloud-metadata targets."
+    },
+    {
+      "claim_type": "local_harness",
+      "status": "passed",
+      "case_count": 2,
+      "assertion_error_count": 0,
+      "case_names": [
+        "prospect-with-public-source-yields-sourced-sequence",
+        "off-allowlist-private-target-is-refused"
+      ],
+      "receipt_ids": [
+        "sha256:e0bd1fb153910a1071fba434baf2f156fe82a8ab324b3fcdd8fed2b981e660c0",
+        "sha256:f8e9c234e42fbf254646b1fbed0e4f66ae6b476bd97c590de43f25ebeec15cf1"
+      ],
+      "detail": "runx harness ./skills/prospect-sequence passed 2/2 (0 assertion errors) before publish: one sealed sourced-sequence case + one refused off-allowlist/SSRF case."
+    },
+    {
+      "claim_type": "hosted_harness",
+      "status": "declared",
+      "declared_cases": [
+        "prospect-with-public-source-yields-sourced-sequence",
+        "off-allowlist-private-target-is-refused"
+      ],
+      "endpoint": "https://api.runx.ai/v1/skills/epistemedeus/prospect-sequence/harness",
+      "detail": "The hosted listing declares both harness cases (visible at the /harness endpoint). The community URL-publish lane records declared cases; the local harness ran them green and the post-publish dogfood + runx verify provide the runnable proof."
+    },
+    {
+      "claim_type": "dogfood_receipt",
+      "receipt_ref": "runx:receipt:sha256:8f572925706d68717075df0a92cd66b963e9f356e581f13d5dee897081c92cc6",
+      "receipt_id": "sha256:8f572925706d68717075df0a92cd66b963e9f356e581f13d5dee897081c92cc6",
+      "skill_id": "epistemedeus/prospect-sequence",
+      "version": "sha-9575d8e502fb",
+      "registry_source": "remote https://api.runx.ai",
+      "trust_state": "trusted",
+      "detail": "Post-publish dogfood: runx skill resolved the PUBLISHED package from the official source https://api.runx.ai (trust_state=trusted) and sealed this receipt. This is the registry run, not the harness fixture seal."
+    },
+    {
+      "claim_type": "runx_verify",
+      "verdict": "valid",
+      "digest": "valid",
+      "signature": "valid",
+      "verify_kid": "epistemedeus-prospect-seq",
+      "detail": "runx verify --receipt <receipt.json> --json returns valid:true (digest valid, signature valid).",
+      "verify_public_key_base64": "cn60NwEwk2fj07Se3C+TaQV34vZ2rFVPz1PZliT2yt8="
+    },
+    {
+      "claim_type": "install_and_run",
+      "install_command": "runx add epistemedeus/prospect-sequence@sha-9575d8e502fb",
+      "dogfood_command": "runx skill epistemedeus/prospect-sequence@sha-9575d8e502fb --registry https://api.runx.ai --input-json prospect='{\"company\":\"Example Org\",\"contact\":\"ops@example.com\"}' --input icp=\"B2B teams with a public marketing site\" --input-json source_allowlist='[\"example.com\"]' --json",
+      "detail": "A new user installs with `runx add epistemedeus/prospect-sequence@sha-9575d8e502fb`, runs with the dogfood command above, and verifies the sealed receipt with `runx verify --receipt <receipt.json> --json` \u2014 no private context required."
+    }
+  ],
+  "verify_public_key_base64": "cn60NwEwk2fj07Se3C+TaQV34vZ2rFVPz1PZliT2yt8=",
+  "verify_kid": "epistemedeus-prospect-seq"
+}
